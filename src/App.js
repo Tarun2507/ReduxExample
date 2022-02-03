@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import {useDispatch,useSelector} from 'react-redux'
+import { cartActions } from './store/cart';
 function App() {
+  const dispatch = useDispatch()
+  const cart = useSelector((state) => state.cart.items)
+  function getcartItems() {
+    console.log(cart)
+  }
+  function addToCart() {
+    dispatch(cartActions.addToCart('Apple'))
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+    <button onClick={addToCart}> Add to cart</button>
+   <button onClick={getcartItems}>Click to get</button>
+   </>
+  )
 }
 
 export default App;
